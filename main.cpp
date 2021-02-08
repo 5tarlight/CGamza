@@ -1,6 +1,7 @@
-#include <iostream>
+#include "util/util.h"
 
 int main() {
-  std::cout << "Hello, World!" << std::endl;
+  util::printLogo();
+
   return 0;
 }
