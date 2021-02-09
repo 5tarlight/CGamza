@@ -7,7 +7,7 @@
 #include <conio.h>
 
 void util::printLogo() {
-  std::cout << "감자에 오신 것을 환영합니다." << std::endl;
+  printColor("환영합니다.", FOREGROUND_GREEN, SET_BACKGROUND_COLOR);
   pause();
 }
 
@@ -23,4 +23,12 @@ int util::getCharInput(std::string question, bool isInline) {
 
 void util::pause() {
   getCharInput("계속하려면 아무 키나 누르세요.");
+}
+
+void util::printColor(std::string text, int foreground, int background, bool isInline) {
+  HANDLE coutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(coutHandle, foreground | background);
+  std::cout << text;
+  if (!isInline) std::cout << std::endl;
+  SetConsoleTextAttribute(coutHandle, BACKGROUND_INTENSITY | BACKGROUND_INTENSITY);
 }
